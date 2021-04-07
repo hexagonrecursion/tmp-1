@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: git fetch --depth=1 origin main
+        with:
+          # `towncrier check` needs enough history to run `git diff --name-only origin/main...`
+          fetch-depth: 0  
       - run: pipx run towncrier check --compare-with origin/main
         if: ${{ ! contains(github.event.issue.labels.*.name, 'trivial') }}
