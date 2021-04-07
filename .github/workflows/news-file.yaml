@@ -10,4 +10,4 @@ jobs:
           # `towncrier check` needs enough history to run `git diff --name-only origin/main...`
           fetch-depth: 0  
       - run: pipx run towncrier check --compare-with origin/main
-        if: ${{ ! contains(github.event.issue.labels.*.name, 'trivial') }}
+        if: ${{ ! (contains(github.event.issue.labels.*.name, 'trivial')) }}
