@@ -8,6 +8,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           # `towncrier check` needs enough history to run `git diff --name-only origin/main...`
-          fetch-depth: 0  
+          fetch-depth: 0
+      - run: echo ${{ contains(github.event.issue.labels.*.name, 'trivial') }}
+      - run: echo ${{ ! contains(github.event.issue.labels.*.name, 'trivial') }}
       - run: pipx run towncrier check --compare-with origin/main
         if: ${{ ! (contains(github.event.issue.labels.*.name, 'trivial')) }}
