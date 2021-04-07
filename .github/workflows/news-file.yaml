@@ -7,3 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: pipx run towncrier check --compare-with origin/main
+        if: ${{ ! contains(github.event.issue.labels.*.name, 'trivial') }}
