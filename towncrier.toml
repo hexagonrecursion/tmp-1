@@ -1,1 +1,4 @@
 [tool.towncrier]
+type = [
+  { name = "Trivial Changes",           directory = "trivial", showcontent = false },
+]
